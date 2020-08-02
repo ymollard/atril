@@ -356,14 +356,15 @@ djvu_document_render (EvDocument      *document,
 	}
 
 	surface = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
-					      page_width, page_height);
+	                                      (int)(page_width + 0.5),
+	                                      (int)(page_height + 0.5));
 	rowstride = cairo_image_surface_get_stride (surface);
 	pixels = (gchar *)cairo_image_surface_get_data (surface);
 
 	prect.x = 0;
 	prect.y = 0;
-	prect.w = page_width;
-	prect.h = page_height;
+	prect.w = MAX ((unsigned int)(page_width + 0.5), 0);
+	prect.h = MAX ((unsigned int)(page_height + 0.5), 0);
 	rrect = prect;
 
 	ddjvu_page_set_rotation (d_page, rotation);

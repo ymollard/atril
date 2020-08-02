@@ -231,8 +231,10 @@ ev_annotation_window_resize (EvAnnotationWindow *window,
 					      window->resize_sw == ebox ?
 					      GDK_WINDOW_EDGE_SOUTH_WEST :
 					      GDK_WINDOW_EDGE_SOUTH_EAST,
-					      event->button, event->x_root,
-					      event->y_root, event->time);
+					      event->button,
+		                              (int)(event->x_root + 0.5),
+					      (int)(event->y_root + 0.5),
+		                              event->time);
 		return TRUE;
 	}
 
@@ -288,12 +290,12 @@ ev_annotation_window_button_press_event (GtkWidget      *widget,
 
 	if (event->type == GDK_BUTTON_PRESS && event->button == 1) {
 		window->in_move = TRUE;
-		window->x = event->x_root - event->x;
-		window->y = event->y_root - event->y;
+		window->x = (int)(event->x_root - event->x + 0.5);
+		window->y = (int)(event->y_root - event->y + 0.5);
 		gtk_window_begin_move_drag (GTK_WINDOW (widget),
 					    event->button,
-					    event->x_root,
-					    event->y_root,
+					    (int)(event->x_root + 0.5),
+					    (int)(event->y_root + 0.5),
 					    event->time);
 		return TRUE;
 	}

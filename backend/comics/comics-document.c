@@ -786,8 +786,8 @@ comics_document_render_pixbuf (EvDocument      *document,
 
 		tmp_pixbuf =
 			gdk_pixbuf_new_from_file_at_size (
-				    filename, width * (rc->scale) + 0.5,
-				    height * (rc->scale) + 0.5, NULL);
+				    filename, (int)((double)width * (rc->scale) + 0.5),
+				    (int)((double)height * (rc->scale) + 0.5), NULL);
 		rotated_pixbuf =
 			gdk_pixbuf_rotate_simple (tmp_pixbuf,
 						  360 - rc->rotation);
@@ -818,8 +818,8 @@ render_pixbuf_size_prepared_cb (GdkPixbufLoader *loader,
 				gpointer         data)
 {
 	double *scale = data;
-	int w = (width  * (*scale) + 0.5);
-	int h = (height * (*scale) + 0.5);
+	int w = (int)((double)width  * (*scale) + 0.5);
+	int h = (int)((double)height * (*scale) + 0.5);
 
 	gdk_pixbuf_loader_set_size (loader, w, h);
 }
