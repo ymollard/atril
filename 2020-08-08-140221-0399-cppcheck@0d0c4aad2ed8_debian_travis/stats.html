@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - atril</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script>
+      function getStyle(el, styleProp) {
+        var y;
+
+        if (el.currentStyle) {
+          y = el.currentStyle[styleProp];
+        } else if (window.getComputedStyle) {
+          y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+
+        return y;
+      }
+
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+
+        if (el.style.display === "block") {
+          el.style.display = "none";
+          mark.textContent = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.textContent = "[-]";
+        }
+      }
+
+      function initExpandables() {
+        var elements = document.querySelectorAll(".expandable");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var el = elements[i];
+          var clickable = el.querySelector("span");
+          var marker = clickable.querySelector(".marker");
+          var content = el.querySelector(".content");
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.addEventListener("click", toggle);
+        }
+      }
+
+      function toggleDisplay(id) {
+        var elements = document.querySelectorAll("." + id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("d-none");
+        }
+      }
+
+      function toggleAll() {
+        var elements = document.querySelectorAll("input");
+
+        // starting from 1 since 0 is the "toggle all" input
+        for (var i = 1, len = elements.length; i < len; i++) {
+          var el = elements[i];
+
+          if (el.checked) {
+            el.checked = false;
+          } else {
+            el.checked = true;
+          }
+
+          toggleDisplay(el.id);
+        }
+      }
+      window.addEventListener("load", initExpandables);
+    </script>
+  </head>
+  <body>
+    <div id="header" class="header">
+      <h1>Cppcheck report - atril: Statistics</h1>
+    </div>
+    <div class="wrapper">
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Back to summary</a> </p>
+
+    </div>
+    <div id="content_index">
+<p>Top 10 files for error severity, total findings: 23<br>
+&#160;&#160;&#160;9&#160;<a href="40.html">  libview/ev-document-model.h</a><br>
+&#160;&#160;&#160;3&#160;<a href="33.html">  libdocument/ev-annotation.h</a><br>
+&#160;&#160;&#160;2&#160;<a href="22.html">  backend/epub/minizip/ioapi.h</a><br>
+&#160;&#160;&#160;1&#160;<a href="48.html">  shell/ev-daemon.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="41.html">  libview/ev-jobs.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="39.html">  libdocument/ev-mapping-list.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="38.html">  libdocument/ev-link-dest.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="37.html">  libdocument/ev-link-action.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="36.html">  libdocument/ev-document.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="34.html">  libdocument/ev-attachment.c</a><br>
+</p>
+<p>Top 10 files for warning severity, total findings: 26<br>
+&#160;&#160;&#160;9&#160;<a href="31.html">  cut-n-paste/toolbar-editor/egg-toolbars-model.c</a><br>
+&#160;&#160;&#160;6&#160;<a href="49.html">  shell/ev-gdbus-generated.c</a><br>
+&#160;&#160;&#160;3&#160;<a href="47.html">  shell/ev-daemon-gdbus-generated.c</a><br>
+&#160;&#160;&#160;2&#160;<a href="25.html">  backend/tiff/tiff2ps.c</a><br>
+&#160;&#160;&#160;2&#160;<a href="8.html">  backend/dvi/mdvi-lib/common.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="35.html">  libdocument/ev-document-misc.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="27.html">  cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="18.html">  backend/dvi/mdvi-lib/util.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="9.html">  backend/dvi/mdvi-lib/dviread.c</a><br>
+</p>
+<p>Top 10 files for portability severity, total findings: 30<br>
+&#160;&#160;&#160;15&#160;<a href="16.html">  backend/dvi/mdvi-lib/tfmfile.c</a><br>
+&#160;&#160;&#160;7&#160;&#160;<a href="56.html">  shell/ev-window.c</a><br>
+&#160;&#160;&#160;7&#160;&#160;<a href="27.html">  cut-n-paste/smclient/libegg/eggsmclient-xsmp.c</a><br>
+&#160;&#160;&#160;1&#160;&#160;<a href="18.html">  backend/dvi/mdvi-lib/util.c</a><br>
+</p>
+<p>Top 10 files for style severity, total findings: 178<br>
+&#160;&#160;&#160;20&#160;<a href="6.html">  backend/dvi/mdvi-lib/afmparse.c</a><br>
+&#160;&#160;&#160;13&#160;<a href="9.html">  backend/dvi/mdvi-lib/dviread.c</a><br>
+&#160;&#160;&#160;12&#160;<a href="24.html">  backend/pdf/ev-poppler.cc</a><br>
+&#160;&#160;&#160;11&#160;<a href="29.html">  cut-n-paste/toolbar-editor/egg-editable-toolbar.c</a><br>
+&#160;&#160;&#160;11&#160;<a href="25.html">  backend/tiff/tiff2ps.c</a><br>
+&#160;&#160;&#160;11&#160;<a href="7.html">  backend/dvi/mdvi-lib/bitmap.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="23.html">  backend/epub/minizip/unzip.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="17.html">  backend/dvi/mdvi-lib/tt.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="0.html">  backend/comics/comics-document.c</a><br>
+&#160;&#160;&#160;6&#160;&#160;<a href="26.html">  cut-n-paste/smclient/libegg/eggdesktopfile.c</a><br>
+</p>
+<p>Top 10 files for information severity, total findings: 27<br>
+&#160;&#160;&#160;17&#160;<a href="21.html">  backend/epub/minizip/ioapi.c</a><br>
+&#160;&#160;&#160;10&#160;<a href="22.html">  backend/epub/minizip/ioapi.h</a><br>
+</p>
+
+      </div> <!-- /.wrapper -->
+    </div>
+    <div id="footer" class="footer">
+      <p>
+        Cppcheck 2.1 - a tool for static C/C++ code analysis<br>
+        <br>
+        Internet: <a href="http://cppcheck.net">http://cppcheck.net</a><br>
+        IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a><br>
+      </p>
+    </div>
+  </body>
+</html>
